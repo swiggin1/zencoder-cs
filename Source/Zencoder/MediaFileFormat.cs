@@ -25,7 +25,7 @@ namespace Zencoder
         /// <summary>
         /// Identifies the MP4 format.
         /// </summary>
-        [Description("AAC")]
+        [Description("aac")]
         AAC,
 
         /// <summary>
