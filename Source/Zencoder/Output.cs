@@ -4,13 +4,15 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using Newtonsoft.Json;
+
 namespace Zencoder
 {
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Represents job output settings.
@@ -18,8 +20,7 @@ namespace Zencoder
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class Output
     {
-        [JsonProperty("headers", NullValueHandling = NullValueHandling.Ignore)]
-        private IDictionary<string, string> headers;
+        [JsonProperty("headers", NullValueHandling = NullValueHandling.Ignore)] private IDictionary<string, string> headers;
 
         /// <summary>
         /// Gets or sets the collection of custom S3 access grants to apply to the output
@@ -76,7 +77,7 @@ namespace Zencoder
         /// Gets or sets a value indicating whether to apply an auto-level filter to the output video.
         /// </summary>
         [JsonProperty("auto_level", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? AutoLevel { get; set; }
 
         /// <summary>
@@ -85,21 +86,6 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("base_url", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public string BaseUrl { get; set; }
-
-        /// <summary>
-        /// The max bitrate fed to the decoder via a buffer. Typically used only for streaming (RTMP or broadcast video), not for HTTP delivery of video.
-        /// Only use this number if you know what you are doing. This should typically only be used for streaming (or for device playback).
-        /// </summary>
-        [JsonProperty("decoder_bitrate_cap", NullValueHandling = NullValueHandling.Ignore)]
-        public int? DecoderBitrateCap { get; set; }
-
-        /// <summary>
-        /// The size of the buffer fed to the decoder when using a bitrate_cap, expressed in kbps. The buffer_size divided by bitrate_cap represents the size of the buffer in seconds; so if you set bitrate_cap to 1000 and buffer_size to 1000, the buffer is effectively 1.0 second. If bitrate_cap is 500 and buffer_size is 1000, the buffer is 2.0 seconds.
-        /// This is typically used only for streaming (RTMP or broadcast video), not for HTTP delivery of video. Only use this number if you know what you are doing. This should typically only be used for streaming (or for device playback).
-        /// </summary>
-        [JsonProperty("decoder_buffer_size", NullValueHandling = NullValueHandling.Ignore)]
-        public int? DecoderBufferSize { get; set; }
-
 
         /// <summary>
         /// Gets or sets the desired peak bitrate for the output video, without
@@ -126,14 +112,14 @@ namespace Zencoder
         /// Requires setting <see cref="VideoBitrate"/>. Cannot be used in conjuction with <see cref="Quality"/>.
         /// </summary>
         [JsonProperty("constant_bitrate", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? ConstantBitrate { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to apply a deblocking filter to the output video.
         /// </summary>
         [JsonProperty("deblock", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? Deblock { get; set; }
 
         /// <summary>
@@ -142,6 +128,20 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("decimate", NullValueHandling = NullValueHandling.Ignore)]
         public int? Decimate { get; set; }
+
+        /// <summary>
+        /// The max bitrate fed to the decoder via a buffer. Typically used only for streaming (RTMP or broadcast video), not for HTTP delivery of video.
+        /// Only use this number if you know what you are doing. This should typically only be used for streaming (or for device playback).
+        /// </summary>
+        [JsonProperty("decoder_bitrate_cap", NullValueHandling = NullValueHandling.Ignore)]
+        public int? DecoderBitrateCap { get; set; }
+
+        /// <summary>
+        /// The size of the buffer fed to the decoder when using a bitrate_cap, expressed in kbps. The buffer_size divided by bitrate_cap represents the size of the buffer in seconds; so if you set bitrate_cap to 1000 and buffer_size to 1000, the buffer is effectively 1.0 second. If bitrate_cap is 500 and buffer_size is 1000, the buffer is 2.0 seconds.
+        /// This is typically used only for streaming (RTMP or broadcast video), not for HTTP delivery of video. Only use this number if you know what you are doing. This should typically only be used for streaming (or for device playback).
+        /// </summary>
+        [JsonProperty("decoder_buffer_size", NullValueHandling = NullValueHandling.Ignore)]
+        public int? DecoderBufferSize { get; set; }
 
         /// <summary>
         /// Gets or sets the deinterlace mode to use.
@@ -161,7 +161,7 @@ namespace Zencoder
         /// for more details on device profiles.
         /// </summary>
         [JsonProperty("device_profile", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(EnumDescriptionConverter))]
+        [JsonConverter(typeof (EnumDescriptionConverter))]
         public DeviceProfile? DeviceProfile { get; set; }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Zencoder
         /// allowing variability.
         /// </summary>
         [JsonProperty("fixed_keyframe_interval", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? FixedKeyframeInterval { get; set; }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace Zencoder
         /// Turn on hinting of MP4 files for RTP/RTSP. The default mtu_size is 1450 bytes; use the mtu_size option to change this.
         /// </summary>
         [JsonProperty("hint", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? Hint { get; set; }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace Zencoder
         /// <see cref="VideoBitrate"/> is set.
         /// </summary>
         [JsonProperty("onepass", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? Onepass { get; set; }
 
         /// <summary>
@@ -303,7 +303,7 @@ namespace Zencoder
         /// if the output is being placed in S3.
         /// </summary>
         [JsonProperty("public", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? Public { get; set; }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace Zencoder
         /// application when storing outputs on S3.
         /// </summary>
         [JsonProperty("rrs", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? Rrs { get; set; }
 
         /// <summary>
@@ -340,21 +340,21 @@ namespace Zencoder
         /// Gets or sets a value indicating whether to apply a sharpen filter to the output video.
         /// </summary>
         [JsonProperty("sharpet", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? Sharpen { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to skip the input audio track, if one is present.
         /// </summary>
         [JsonProperty("skip_audio", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? SkipAudio { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to skip the input video track, if one is present.
         /// </summary>
         [JsonProperty("skip_video", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? SkipVideo { get; set; }
 
         /// <summary>
@@ -381,7 +381,7 @@ namespace Zencoder
         /// rather than having the service move bad parameters into valid ranges.
         /// </summary>
         [JsonProperty("strict", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? Strict { get; set; }
 
         /// <summary>
@@ -401,7 +401,7 @@ namespace Zencoder
         /// up to the output resolution if necessary.
         /// </summary>
         [JsonProperty("upscale", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
+        [JsonConverter(typeof (BooleanConverter))]
         public bool? Upscale { get; set; }
 
         /// <summary>
@@ -443,7 +443,7 @@ namespace Zencoder
         /// <returns>The instance.</returns>
         public Output WithAccessControl(S3Access accessControl)
         {
-            return this.WithAccessControls(new S3Access[] { accessControl });
+            return this.WithAccessControls(new[] {accessControl});
         }
 
         /// <summary>
@@ -486,13 +486,43 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// Appends a <see cref="Notification"/> to this instance's <see cref="Notification"/> collection.
+        /// </summary>
+        /// <param name="notification">The notification to append.</param>
+        /// <returns>This instance.</returns>
+        public Output WithNotification(Notification notification)
+        {
+            if (notification != null)
+            {
+                return this.WithNotifications(new[] {notification});
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Appends a collection of <see cref="Notification"/>s to this instance's <see cref="Notification"/> collection.
+        /// </summary>
+        /// <param name="notifications">The notifications to append.</param>
+        /// <returns>This instance.</returns>
+        public Output WithNotifications(IEnumerable<Notification> notifications)
+        {
+            if (notifications != null)
+            {
+                this.Notifications = (this.Notifications ?? new Notification[0]).Concat(notifications).ToArray();
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Sets this instance's <see cref="Thumbnails"/> property.
         /// </summary>
         /// <param name="thumbnails">The thumbnails to set.</param>
         /// <returns>This instance.</returns>
         public Output WithThumbnails(Thumbnails thumbnails)
         {
-            return this.WithThumbnails(thumbnails != null ? new Thumbnails[1] { thumbnails } : null);
+            return this.WithThumbnails(thumbnails != null ? new Thumbnails[1] {thumbnails} : null);
         }
 
         /// <summary>
@@ -519,36 +549,6 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Appends a <see cref="Notification"/> to this instance's <see cref="Notification"/> collection.
-        /// </summary>
-        /// <param name="notification">The notification to append.</param>
-        /// <returns>This instance.</returns>
-        public Output WithNotification(Notification notification)
-        {
-            if (notification != null)
-            {
-                return this.WithNotifications(new Notification[] { notification });
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Appends a collection of <see cref="Notification"/>s to this instance's <see cref="Notification"/> collection.
-        /// </summary>
-        /// <param name="notifications">The notifications to append.</param>
-        /// <returns>This instance.</returns>
-        public Output WithNotifications(IEnumerable<Notification> notifications)
-        {
-            if (notifications != null)
-            {
-                this.Notifications = (this.Notifications ?? new Notification[0]).Concat(notifications).ToArray();
-            }
-
-            return this;
-        }
-
-        /// <summary>
         /// Appends a <see cref="Watermark"/> to this instance's <see cref="Watermark"/> collection.
         /// </summary>
         /// <param name="watermark">The watermark to append.</param>
@@ -557,7 +557,7 @@ namespace Zencoder
         {
             if (watermark != null)
             {
-                return this.WithWatermarks(new Watermark[] { watermark });
+                return this.WithWatermarks(new[] {watermark});
             }
 
             return this;
