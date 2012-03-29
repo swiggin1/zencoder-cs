@@ -87,6 +87,21 @@ namespace Zencoder
         public string BaseUrl { get; set; }
 
         /// <summary>
+        /// The max bitrate fed to the decoder via a buffer. Typically used only for streaming (RTMP or broadcast video), not for HTTP delivery of video.
+        /// Only use this number if you know what you are doing. This should typically only be used for streaming (or for device playback).
+        /// </summary>
+        [JsonProperty("decoder_bitrate_cap", NullValueHandling = NullValueHandling.Ignore)]
+        public int? DecoderBitrateCap { get; set; }
+
+        /// <summary>
+        /// The size of the buffer fed to the decoder when using a bitrate_cap, expressed in kbps. The buffer_size divided by bitrate_cap represents the size of the buffer in seconds; so if you set bitrate_cap to 1000 and buffer_size to 1000, the buffer is effectively 1.0 second. If bitrate_cap is 500 and buffer_size is 1000, the buffer is 2.0 seconds.
+        /// This is typically used only for streaming (RTMP or broadcast video), not for HTTP delivery of video. Only use this number if you know what you are doing. This should typically only be used for streaming (or for device playback).
+        /// </summary>
+        [JsonProperty("decoder_buffer_size", NullValueHandling = NullValueHandling.Ignore)]
+        public int? DecoderBufferSize { get; set; }
+
+
+        /// <summary>
         /// Gets or sets the desired peak bitrate for the output video, without
         /// forcing lower bitrates to be raised.
         /// </summary>
