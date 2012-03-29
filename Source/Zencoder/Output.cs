@@ -212,6 +212,14 @@ namespace Zencoder
         [JsonProperty("height", NullValueHandling = NullValueHandling.Ignore)]
         public int? Height { get; set; }
 
+
+        /// <summary>
+        /// Turn on hinting of MP4 files for RTP/RTSP. The default mtu_size is 1450 bytes; use the mtu_size option to change this.
+        /// </summary>
+        [JsonProperty("hint", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? Hint { get; set; }
+
         /// <summary>
         /// Gets or sets the maximum number of frames between each keyframe.
         /// Defaults to 250.
