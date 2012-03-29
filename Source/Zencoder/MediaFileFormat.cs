@@ -26,7 +26,7 @@ namespace Zencoder
         /// Identifies the MP4 format.
         /// </summary>
         [Description("AAC")]
-        aac,
+        AAC,
 
         /// <summary>
         /// Identifies the 3G2 format.
