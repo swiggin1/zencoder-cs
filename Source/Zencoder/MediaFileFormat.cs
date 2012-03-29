@@ -21,6 +21,12 @@ namespace Zencoder
         /// </summary>
         [Description("mp4")]
         MPFour = 0,
+        
+        /// <summary>
+        /// Identifies the MP4 format.
+        /// </summary>
+        [Description("AAC")]
+        aac,
 
         /// <summary>
         /// Identifies the 3G2 format.
