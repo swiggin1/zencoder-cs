@@ -22,10 +22,16 @@ namespace Zencoder
         public OutputEvent CurrentEvent { get; set; }
 
         /// <summary>
-        /// Gets or sets the progress of <see cref="CurrentEvent"/>.
+        /// Overall percentage of completion.
         /// </summary>
         [JsonProperty("progress")]
         public double Progress { get; set; }
+
+        /// <summary>
+        /// Gets or sets the progress of <see cref="CurrentEvent"/>.
+        /// </summary>
+        [JsonProperty("current_event_progress")]
+        public double CurrentEventProgress { get; set; }
 
         /// <summary>
         /// Gets or sets the output's current state.

@@ -158,6 +158,30 @@ namespace Zencoder
         /// Identifies the WMV format.
         /// </summary>
         [Description("wmv")]
-        WMV
+        WMV,
+
+        /// <summary>
+        /// Identifies the AAC format.
+        /// </summary>
+        [Description("aac")]
+        AAC,
+
+        /// <summary>
+        /// Identifies the CAF format.
+        /// </summary>
+        [Description("caf")]
+        CAF,
+
+        /// <summary>
+        /// Identifies the FLAC format.
+        /// </summary>
+        [Description("flac")]
+        Flac,
+
+        /// <summary>
+        /// Identifies the highwinds format.
+        /// </summary>
+        [Description("highwinds")]
+        Highwinds
     }
 }
