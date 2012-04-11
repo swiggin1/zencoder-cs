@@ -437,6 +437,13 @@ namespace Zencoder
         public int? Width { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to generate an MD5 checksum for the generated output file.
+        /// </summary>
+        [JsonProperty("generate_md5_checksum", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? GenerateMd5Checksum { get; set; }
+
+        /// <summary>
         /// Appends the given S3 access control to this instance's <see cref="AccessControl"/> collection.
         /// </summary>
         /// <param name="accessControl">The access controls to append.</param>
