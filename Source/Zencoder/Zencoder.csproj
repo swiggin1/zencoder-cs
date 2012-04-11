@@ -84,6 +84,8 @@
     <Compile Include="BooleanConverter.cs" />
     <Compile Include="CancelJobRequest.cs" />
     <Compile Include="CancelJobResponse.cs" />
+    <Compile Include="OutputDetailsResponse.cs" />
+    <Compile Include="OutputDetailsRequest.cs" />
     <Compile Include="CreateAccountRequest.cs" />
     <Compile Include="CreateAccountResponse.cs" />
     <Compile Include="CreateJobRequest.cs" />
