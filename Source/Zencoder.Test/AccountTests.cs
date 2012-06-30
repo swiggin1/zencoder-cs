@@ -85,15 +85,22 @@ namespace Zencoder.Test
         {
             CreateAccountResponse response = Zencoder.CreateAccount(Guid.NewGuid().ToString() + "@example.com", Guid.NewGuid().ToString(), null, true, false);
             Assert.IsTrue(response.Success);
+        }
 
+        /// <summary>
+        /// Create account request tests.
+        /// </summary>
+        [TestMethod]
+        public void AccountCreateAccountRequestAsync()
+        {
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
             Zencoder.CreateAccount(
-                Guid.NewGuid().ToString() + "@example.com", 
-                Guid.NewGuid().ToString(), 
-                null, 
-                true, 
-                false, 
+                Guid.NewGuid().ToString() + "@example.com",
+                Guid.NewGuid().ToString(),
+                null,
+                true,
+                false,
                 r =>
                 {
                     Assert.IsTrue(r.Success);
