@@ -59,7 +59,7 @@ namespace Zencoder
                 {
                     HttpWebRequest request = this.CreateRequest();
 
-                    if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
+                    if (this.Verb == HttpVerb.POST)
                     {
                         using (Stream stream = request.GetRequestStream())
                         {
@@ -91,7 +91,7 @@ namespace Zencoder
             {
                 HttpWebRequest request = this.CreateRequest();
 
-                if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
+                if (this.Verb == HttpVerb.POST)
                 {
                     request.BeginGetRequestStream(
                         new AsyncCallback(
@@ -161,9 +161,9 @@ namespace Zencoder
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.Url);
             request.Accept = "application/json";
             request.ContentType = "application/json";
-            request.Method = this.Verb;
+            request.Method = this.Verb.ToString();
 
-            if ("PUT".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
+            if (this.Verb == HttpVerb.PUT)
             {
                 request.ContentLength = 0;
             }

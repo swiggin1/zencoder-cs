@@ -88,9 +88,9 @@ namespace Zencoder
         /// <summary>
         /// Gets the HTTP verb to use when making the request.
         /// </summary>
-        public override string Verb
+        public override HttpVerb Verb
         {
-            get { return "POST"; }
+            get { return HttpVerb.POST; }
         }
 
         /// <summary>

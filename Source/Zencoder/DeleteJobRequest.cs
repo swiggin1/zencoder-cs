@@ -78,9 +78,9 @@ namespace Zencoder
         /// <summary>
         /// Gets the HTTP verb to use when making the request.
         /// </summary>
-        public override string Verb
+        public override HttpVerb Verb
         {
-            get { return "DELETE"; }
+            get { return HttpVerb.DELETE; }
         }
     }
 }

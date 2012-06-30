@@ -64,6 +64,6 @@ namespace Zencoder
         /// <summary>
         /// Gets the HTTP verb to use when making the request.
         /// </summary>
-        public abstract string Verb { get; }
+        public abstract HttpVerb Verb { get; }
     }
 }
