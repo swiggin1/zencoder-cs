@@ -4,10 +4,12 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+using Newtonsoft.Json;
+
 namespace Zencoder
 {
     using System;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Provides custom JSON serialization for enums to/from lowercase strings.
@@ -39,12 +41,13 @@ namespace Zencoder
 
             if (!string.IsNullOrEmpty(str))
             {
-                try
+                if (objectType.IsNullableEnum())
                 {
-                    result = Enum.Parse(objectType, str, true);
+                    result = TryParseNullable(objectType, str);
                 }
-                catch (ArgumentException)
+                else
                 {
+                    result = TryParse(objectType, str);
                 }
             }
 
@@ -61,6 +64,26 @@ namespace Zencoder
         {
             string str = (value ?? string.Empty).ToString();
             serializer.Serialize(writer, str.ToLowerInvariant());
+        }
+
+        private static object TryParse(Type objectType, string value)
+        {
+            object result = null;
+
+            try
+            {
+                result = Enum.Parse(objectType, value, true);
+            }
+            catch (ArgumentException)
+            {
+            }
+            return result;
+        }
+
+        private static object TryParseNullable(Type objectType, string value)
+        {
+            var underlying = Nullable.GetUnderlyingType(objectType);
+            return TryParse(underlying, value);
         }
     }
 }

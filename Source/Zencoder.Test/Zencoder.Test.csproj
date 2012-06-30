@@ -79,6 +79,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="AccountTests.cs" />
+    <Compile Include="EnumLowercaseJsonConverterTest.cs" />
     <Compile Include="JobTests.cs" />
     <Compile Include="NotificationTests.cs" />
     <Compile Include="OutputTests.cs" />
