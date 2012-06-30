@@ -613,7 +613,10 @@ namespace Zencoder.Test
                     handles[1].Set();
                 });
 
-            WaitHandle.WaitAll(handles);
+            foreach (var handle in handles)
+            {
+                handle.WaitOne();
+            }
         }
 
         /// <summary>
