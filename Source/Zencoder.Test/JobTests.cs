@@ -264,18 +264,32 @@ namespace Zencoder.Test
 
             CancelJobResponse cancelResponse = Zencoder.CancelJob(createResponse.Id);
             Assert.IsTrue(cancelResponse.Success);
+        }
+
+        /// <summary>
+        /// Cancel job request tests.
+        /// </summary>
+        [TestMethod]
+        public void JobCancelJobRequestAsync()
+        {
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
+            Assert.IsTrue(createResponse.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
+            CancelJobResponse asyncResponse = null;
+
             Zencoder.CancelJob(
-                createResponse.Id, 
+                createResponse.Id,
                 r =>
-                {
-                    Assert.IsTrue(r.InConflict);
-                    handles[0].Set();
+                    {
+                        asyncResponse = r;
+                        handles[0].Set();
                 });
 
             WaitHandle.WaitAll(handles);
+            Assert.IsNotNull(asyncResponse);
+            Assert.IsTrue(asyncResponse.Success);
         }
 
         /// <summary>
