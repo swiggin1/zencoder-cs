@@ -393,9 +393,9 @@ namespace Zencoder
         /// </summary>
         /// <param name="outputId">The ID of the output (NOT the job ID) to get progress for.</param>
         /// <returns>The call response.</returns>
-        public JobProgressResponse JobProgress(int outputId)
+        public JobOutputProgressResponse JobOutputProgress(int outputId)
         {
-            JobProgressRequest request = new JobProgressRequest(this)
+            JobOutputProgressRequest request = new JobOutputProgressRequest(this)
             {
                 OutputId = outputId
             };
@@ -408,9 +408,9 @@ namespace Zencoder
         /// </summary>
         /// <param name="outputId">The ID of the output (NOT the job ID) to get progress for.</param>
         /// <param name="callback">The call response.</param>
-        public void JobProgress(int outputId, Action<JobProgressResponse> callback)
+        public void JobOutputProgress(int outputId, Action<JobOutputProgressResponse> callback)
         {
-            JobProgressRequest request = new JobProgressRequest(this)
+            JobOutputProgressRequest request = new JobOutputProgressRequest(this)
             {
                 OutputId = outputId
             };

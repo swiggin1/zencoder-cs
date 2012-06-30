@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="JobProgressResponse.cs" company="Tasty Codes">
+// <copyright file="JobOutputProgressResponse.cs" company="Tasty Codes">
 //     Copyright (c) 2010 Chad Burggraf.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -13,7 +13,7 @@ namespace Zencoder
     /// Implements the job progress response.
     /// </summary>
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class JobProgressResponse : Response<JobProgressRequest, JobProgressResponse>
+    public class JobOutputProgressResponse : Response<JobOutputProgressRequest, JobOutputProgressResponse>
     {
         /// <summary>
         /// Gets or sets the event currently in progress for the output.

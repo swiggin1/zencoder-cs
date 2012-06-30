@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="JobProgressRequest.cs" company="Tasty Codes">
+// <copyright file="JobOutputProgressRequest.cs" company="Tasty Codes">
 //     Copyright (c) 2010 Chad Burggraf.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -11,29 +11,29 @@ namespace Zencoder
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Implements the job progress request.
+    /// Implements the job output progress request.
     /// </summary>
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class JobProgressRequest : Request<JobProgressRequest, JobProgressResponse>
+    public class JobOutputProgressRequest : Request<JobOutputProgressRequest, JobOutputProgressResponse>
     {
         private int outputId;
         private Uri url;
 
         /// <summary>
-        /// Initializes a new instance of the JobProgressRequest class.
+        /// Initializes a new instance of the JobOutputProgressRequest class.
         /// </summary>
         /// <param name="zencoder">The <see cref="Zencoder"/> service to create the request with.</param>
-        public JobProgressRequest(Zencoder zencoder)
+        public JobOutputProgressRequest(Zencoder zencoder)
             : base(zencoder)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the JobProgressRequest class.
+        /// Initializes a new instance of the JobOutputProgressRequest class.
         /// </summary>
         /// <param name="apiKey">The API key to use when connecting to the service.</param>
         /// <param name="baseUrl">The service base URL.</param>
-        public JobProgressRequest(string apiKey, Uri baseUrl)
+        public JobOutputProgressRequest(string apiKey, Uri baseUrl)
             : base(apiKey, baseUrl)
         {
         }
