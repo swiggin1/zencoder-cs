@@ -162,6 +162,7 @@ namespace Zencoder
             request.Accept = "application/json";
             request.ContentType = "application/json";
             request.Method = this.Verb;
+            request.ContentLength = 0;  // required for PUT requests
 
             return request as HttpWebRequest;
         }

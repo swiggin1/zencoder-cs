@@ -56,11 +56,18 @@ namespace Zencoder.Test
         {
             AccountIntegrationModeResponse response = Zencoder.AccountIntegrationMode(true);
             Assert.IsTrue(response.Success);
+        }
 
+        /// <summary>
+        /// Account integration mode request tests.
+        /// </summary>
+        [TestMethod]
+        public void AccountAccountIntegrationModeRequestAsync()
+        {
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
             Zencoder.AccountIntegrationMode(
-                true, 
+                true,
                 r =>
                 {
                     Assert.IsTrue(r.Success);

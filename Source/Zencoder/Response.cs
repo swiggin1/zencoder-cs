@@ -46,7 +46,7 @@ namespace Zencoder
         /// </summary>
         public virtual bool Success
         {
-            get { return this.RequestException == null && this.StatusCode == HttpStatusCode.OK; }
+            get { return this.RequestException == null && this.StatusCode == HttpStatusCode.OK || this.StatusCode == HttpStatusCode.NoContent; }
         }
 
         /// <summary>
