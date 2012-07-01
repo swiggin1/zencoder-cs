@@ -84,6 +84,9 @@
     <Compile Include="CancelJobRequest.cs" />
     <Compile Include="CancelJobResponse.cs" />
     <Compile Include="HttpVerb.cs" />
+    <Compile Include="JobInputProgressResponse.cs" />
+    <Compile Include="JobProgressRequest.cs" />
+    <Compile Include="JobProgressResponse.cs" />
     <Compile Include="OutputDetailsResponse.cs" />
     <Compile Include="OutputDetailsRequest.cs" />
     <Compile Include="CreateAccountRequest.cs" />

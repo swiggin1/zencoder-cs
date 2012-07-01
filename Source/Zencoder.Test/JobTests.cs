@@ -520,6 +520,87 @@ namespace Zencoder.Test
         }
 
         /// <summary>
+        /// Job progress request tests.
+        /// </summary>
+        [TestMethod]
+        public void JobJobProgressRequest()
+        {
+            Output output = new Output()
+            {
+                Label = "iPhone",
+                Url = "s3://output-bucket/output-file-1-name.mp4",
+                Width = 480,
+                Height = 320
+            };
+
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", new Output[] { output });
+            Assert.IsTrue(createResponse.Success);
+
+            JobProgressResponse progressResponse = Zencoder.JobProgress(createResponse.Id);
+            Assert.IsTrue(progressResponse.Success);
+
+            AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
+
+            JobProgressResponse asyncResult = null;
+
+            Zencoder.JobProgress(
+                createResponse.Id,
+                r =>
+                    {
+                        asyncResult = r;
+                        handles[0].Set();
+                });
+
+            WaitHandle.WaitAll(handles);
+            Assert.IsNotNull(asyncResult);
+            Assert.IsTrue(asyncResult.Success);
+        }
+
+        /// <summary>
+        /// Job progress response from JSON tests.
+        /// </summary>
+        [TestMethod]
+        public void JobJobProgressResponseFromJson()
+        {
+            JobProgressResponse response = JobProgressResponse.FromJson(@"{
+                                                                      ""state"": ""processing"",
+                                                                      ""progress"": 32.34567345,
+                                                                      ""input"": {
+                                                                        ""id"": 1234,
+                                                                        ""state"": ""finished""
+                                                                      },
+                                                                      ""outputs"": [
+                                                                        {
+                                                                          ""id"": 4567,
+                                                                          ""state"": ""processing"",
+                                                                          ""current_event"": ""Transcoding"",
+                                                                          ""current_event_progress"": 25.0323,
+                                                                          ""progress"": 35.23532
+                                                                        },
+                                                                        {
+                                                                          ""id"": 4568,
+                                                                          ""state"": ""processing"",
+                                                                          ""current_event"": ""Uploading"",
+                                                                          ""current_event_progress"": 82.32,
+                                                                          ""progress"": 95.3223
+                                                                        }
+                                                                      ]
+                                                                    }");
+            Assert.AreEqual(OutputState.Processing, response.State);
+            Assert.AreEqual(32.34567345, response.Progress);
+
+            Assert.AreEqual(1234, response.Input.Id);
+            Assert.AreEqual(OutputState.Finished, response.Input.State);
+
+            Assert.AreEqual(2, response.Outputs.Length);
+            Assert.AreEqual(4567, response.Outputs[0].Id);
+            Assert.AreEqual(OutputState.Processing, response.Outputs[0].State);
+            Assert.AreEqual(OutputEvent.Transcoding, response.Outputs[0].CurrentEvent);
+            Assert.AreEqual(25.0323, response.Outputs[0].CurrentEventProgress);
+            Assert.AreEqual(35.23532, response.Outputs[0].Progress);
+        }
+
+        /// <summary>
         /// List jobs request tests.
         /// </summary>
         [TestMethod]

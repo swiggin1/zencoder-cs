@@ -38,5 +38,11 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("state")]
         public OutputState State { get; set; }
+
+        /// <summary>
+        /// Gets or sets the output's Id (only available when calling JobProgress)
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id { get; set; }
     }
 }
