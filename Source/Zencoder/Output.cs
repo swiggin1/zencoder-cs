@@ -181,6 +181,14 @@ namespace Zencoder
         public bool? FixedKeyframeInterval { get; set; }
 
         /// <summary>
+        /// Gets or sets the forced keyframe interval by specifying number of keyframes per second, taking frame rate into account.
+        /// This option is ignored if forced_keyframe_interval is specified.
+        /// This option only applies when using the H.264 video_codec. (Valid: 0.001 to 1000)
+        /// </summary>
+        [JsonProperty("forced_keyframe_rate", NullValueHandling = NullValueHandling.Ignore)]
+        public float? ForcedKeyframeRate { get; set; }
+
+        /// <summary>
         /// Gets or sets the format of the output container to use. Only set this value if not inferring
         /// the format from the output file name.
         /// </summary>
@@ -192,6 +200,13 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("frame_rate", NullValueHandling = NullValueHandling.Ignore)]
         public float? FrameRate { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to generate an MD5 checksum for the generated output file.
+        /// </summary>
+        [JsonProperty("generate_md5_checksum", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof (BooleanConverter))]
+        public bool? GenerateMd5Checksum { get; set; }
 
         /// <summary>
         /// Gets or sets the level to use when performing H264 encoding.
@@ -358,6 +373,12 @@ namespace Zencoder
         public bool? SkipVideo { get; set; }
 
         /// <summary>
+        /// Gets or sets the output's source (e.g. another output)
+        /// </summary>
+        [JsonProperty("source", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public string Source { get; set; }
+
+        /// <summary>
         /// Gets or sets the target transcoding speed, from 1 to 5.
         /// 1 is the slowest, resulting in the smallest file.
         /// </summary>
@@ -435,13 +456,6 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("width", NullValueHandling = NullValueHandling.Ignore)]
         public int? Width { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to generate an MD5 checksum for the generated output file.
-        /// </summary>
-        [JsonProperty("generate_md5_checksum", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
-        public bool? GenerateMd5Checksum { get; set; }
 
         /// <summary>
         /// Appends the given S3 access control to this instance's <see cref="AccessControl"/> collection.
