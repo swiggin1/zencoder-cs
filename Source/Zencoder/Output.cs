@@ -77,7 +77,7 @@ namespace Zencoder
         /// Gets or sets a value indicating whether to apply an auto-level filter to the output video.
         /// </summary>
         [JsonProperty("auto_level", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? AutoLevel { get; set; }
 
         /// <summary>
@@ -112,14 +112,14 @@ namespace Zencoder
         /// Requires setting <see cref="VideoBitrate"/>. Cannot be used in conjuction with <see cref="Quality"/>.
         /// </summary>
         [JsonProperty("constant_bitrate", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? ConstantBitrate { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to apply a deblocking filter to the output video.
         /// </summary>
         [JsonProperty("deblock", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Deblock { get; set; }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Zencoder
         /// for more details on device profiles.
         /// </summary>
         [JsonProperty("device_profile", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (EnumDescriptionConverter))]
+        [JsonConverter(typeof(EnumDescriptionConverter))]
         public DeviceProfile? DeviceProfile { get; set; }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Zencoder
         /// allowing variability.
         /// </summary>
         [JsonProperty("fixed_keyframe_interval", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? FixedKeyframeInterval { get; set; }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Zencoder
         /// Gets or sets a value indicating whether to generate an MD5 checksum for the generated output file.
         /// </summary>
         [JsonProperty("generate_md5_checksum", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? GenerateMd5Checksum { get; set; }
 
         /// <summary>
@@ -247,7 +247,7 @@ namespace Zencoder
         /// Turn on hinting of MP4 files for RTP/RTSP. The default mtu_size is 1450 bytes; use the mtu_size option to change this.
         /// </summary>
         [JsonProperty("hint", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Hint { get; set; }
 
         /// <summary>
@@ -294,6 +294,15 @@ namespace Zencoder
         public int? MaxVideoBitrate { get; set; }
 
         /// <summary>
+        /// If the input file's dimensions are smaller than the requested size, the output will be skipped.
+        /// Dimensions are calculated by mutliplying the height and the width of the input and comparing it to provided dimensions.
+        /// Note: Due to the nature of video metadata and inconsistencies between video types some input files may have their dimensions 
+        /// read incorrectly during inspection, resulting in conditions being applied or ignored incorrectly.
+        /// </summary>
+        [JsonProperty("min_size", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public string MinimumSize { get; set; }
+
+        /// <summary>
         /// Gets or sets the collection of notifications to define for the output.
         /// </summary>
         [JsonProperty("notifications", NullValueHandling = NullValueHandling.Ignore)]
@@ -304,7 +313,7 @@ namespace Zencoder
         /// <see cref="VideoBitrate"/> is set.
         /// </summary>
         [JsonProperty("onepass", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Onepass { get; set; }
 
         /// <summary>
@@ -318,7 +327,7 @@ namespace Zencoder
         /// if the output is being placed in S3.
         /// </summary>
         [JsonProperty("public", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Public { get; set; }
 
         /// <summary>
@@ -342,7 +351,7 @@ namespace Zencoder
         /// application when storing outputs on S3.
         /// </summary>
         [JsonProperty("rrs", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Rrs { get; set; }
 
         /// <summary>
@@ -355,21 +364,21 @@ namespace Zencoder
         /// Gets or sets a value indicating whether to apply a sharpen filter to the output video.
         /// </summary>
         [JsonProperty("sharpet", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Sharpen { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to skip the input audio track, if one is present.
         /// </summary>
         [JsonProperty("skip_audio", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? SkipAudio { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to skip the input video track, if one is present.
         /// </summary>
         [JsonProperty("skip_video", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? SkipVideo { get; set; }
 
         /// <summary>
@@ -402,7 +411,7 @@ namespace Zencoder
         /// rather than having the service move bad parameters into valid ranges.
         /// </summary>
         [JsonProperty("strict", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Strict { get; set; }
 
         /// <summary>
@@ -422,7 +431,7 @@ namespace Zencoder
         /// up to the output resolution if necessary.
         /// </summary>
         [JsonProperty("upscale", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof (BooleanConverter))]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Upscale { get; set; }
 
         /// <summary>
